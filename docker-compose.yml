@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: legion_arena
+      POSTGRES_USER: legion
+      POSTGRES_PASSWORD: legion_dev_only
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - legion_pgdata:/var/lib/postgresql/data
+      - ./sql/001_persistence.sql:/docker-entrypoint-initdb.d/001_persistence.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U legion -d legion_arena"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "127.0.0.1:6379:6379"
+    volumes:
+      - legion_redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+volumes:
+  legion_pgdata:
+  legion_redisdata:

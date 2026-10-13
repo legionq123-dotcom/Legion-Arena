@@ -1,0 +1,19 @@
+{
+  "name": "legion-arena-realtime-simulation",
+  "version": "24.38.0",
+  "private": true,
+  "type": "module",
+  "description": "Server-authoritative MOBA prototype with matchmaking, server registry, and stale-lobby recovery",
+  "scripts": {
+    "start": "node src/client-gateway.mjs",
+    "test": "node --test",
+    "check": "node --check src/persistence.mjs && node --check test/persistence.test.mjs && node --check src/recovery.mjs && node --check src/match-runtime.mjs && node --check src/client-gateway.mjs && node --check src/world-simulation.mjs && node --check src/bot-ai.mjs && node --check test/item-shop.test.mjs && node --check test/item-actions.test.mjs && node --check test/bot-ai.test.mjs && node --check src/navigation.mjs && node --check test/dynamic-collision.test.mjs && node --check test/world-damage.test.mjs && node --check test/match-runtime.test.mjs && node --check test/kill-assists.test.mjs && node --check test/ability-progression.test.mjs && node --check test/talents.test.mjs && node --check test/match-summary.test.mjs && node --check src/rating.mjs && node --check test/rating.test.mjs && node --check test/rating-persistence-integration.test.mjs && node --check src/persistence-bootstrap.mjs && node --check test/finished-match-transaction.test.mjs && node --check src/matchmaking.mjs && node --check test/matchmaking.test.mjs && node --check src/matchmaking-service.mjs && node --check test/matchmaking-service.test.mjs && node --check test/matchmaking-claim.test.mjs && node --check src/lobby-coordinator.mjs && node --check test/lobby-coordinator.test.mjs && node --check src/game-server-registry.mjs && node --check test/game-server-registry.test.mjs && node --check src/matchmaking-worker.mjs && node --check test/matchmaking-worker.test.mjs && node --check src/lobby-recovery-worker.mjs && node --check test/lobby-recovery-worker.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "pg": "^8.16.3",
+    "redis": "^5.8.2"
+  }
+}
